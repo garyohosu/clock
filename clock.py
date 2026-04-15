@@ -514,8 +514,17 @@ class AlarmApp:
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--minimized", action="store_true", help="起動時に最小化")
+    args, _ = parser.parse_known_args()
+
     root = tk.Tk()
     app = AlarmApp(root)
+
+    if args.minimized:
+        root.after(200, root.iconify)
+
     root.mainloop()
 
 
